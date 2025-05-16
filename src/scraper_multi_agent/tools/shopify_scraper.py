@@ -41,8 +41,13 @@ def scrape_shopify_collection(url: str) -> list:
                 "Description": description,
             })
         # print(f"FORMATTED OUTPUT FROM TOOL {formatted_products}")
-        return formatted_products
-        
+        result = {
+            "products": formatted_products
+        }
+        # print(f"RESULT FROM TOOL {result}")
+        # return formatted_products
+        return result
+
     except Exception as e:
         logging.error(f"Error scraping {url}: {e}")
         return []
