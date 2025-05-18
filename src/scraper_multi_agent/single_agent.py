@@ -1,8 +1,8 @@
 from agents import Agent, Runner
-from scraper_multi_agent.tools.shopify_scraper import scrape_shopify_collection, extract_product_data
+from scraper_multi_agent.tools.shopify_scraper import scrape_shopify_collection
 from scraper_multi_agent.tools.save_to_google import save_to_sheet
 from scraper_multi_agent.config_agents import config
-
+import os, json
 # Shopify scraping agent
 shopify_agent = Agent(
     name="shopify_agent",
@@ -18,18 +18,17 @@ shopify_agent = Agent(
     Do not ask for additional functionality.
     Just return the raw product data array.
     """,
-    tools=[scrape_shopify_collection, extract_product_data, save_to_sheet],
+    tools=[scrape_shopify_collection, save_to_sheet],
     
 )
 
-# 
 # Example values - replace with actual URLs
 shopify_url = "https://maguireshoes.com/collections/sneakers"
 sheet_url = "https://docs.google.com/spreadsheets/d/1DtZXL0gVeU-kr4WpUcBpmQJr-h9-SBgYY9Lzb5pxAoY/edit?gid=0#gid=0"
 
 # New main execution function for testing or direct use
 async def main(shopify_url, sheet_url):
-   
+
     input_data = {
         "shopify_url": shopify_url,
         "sheet_url": sheet_url,
@@ -46,10 +45,12 @@ async def main(shopify_url, sheet_url):
         input=stringify, 
         run_config=config)
     
-    return result
+    return result.final_output
 
 if __name__ == "__main__":
     import asyncio
+    # get_google_client() # Initialize client on startup
+
     final_output= asyncio.run(main(shopify_url, sheet_url))
     print(final_output)
 
