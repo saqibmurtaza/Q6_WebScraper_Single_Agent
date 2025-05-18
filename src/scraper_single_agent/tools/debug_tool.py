@@ -1,4 +1,4 @@
-from scraper_multi_agent.tools.shopify_scraper import scrape_shopify_collection
+from scraper_single_agent.tools.shopify_scraper import scrape_shopify_collection
 
 def debug_scraper():
     result = scrape_shopify_collection("https://maguireshoes.com/collections/sneakers")

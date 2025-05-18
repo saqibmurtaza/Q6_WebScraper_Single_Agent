@@ -1,7 +1,7 @@
 from agents import Agent, Runner
-from scraper_multi_agent.tools.shopify_scraper import scrape_shopify_collection
-from scraper_multi_agent.tools.save_to_google import save_to_sheet
-from scraper_multi_agent.config_agents import config
+from scraper_single_agent.tools.shopify_scraper import scrape_shopify_collection
+from scraper_single_agent.tools.save_to_google import save_to_sheet
+from scraper_single_agent.config_agents import config
 import os, json
 # Shopify scraping agent
 shopify_agent = Agent(
